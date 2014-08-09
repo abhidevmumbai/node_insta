@@ -1,0 +1,39 @@
+doctype html
+html(lang='en')
+head
+	meta(charset='utf-8')
+	meta(name='viewport', content='width=device-width, initial-scale=1.0')
+	link(href='static/css/bootstrap.css' type='text/css' rel='stylesheet')
+	link(href='static/css/bootstrap-responsive.css' type='text/css' rel='stylesheet')
+	link(href='static/css/main.css' type='text/css' rel='stylesheet')
+body
+	.navbar.navbar-inverse.navbar-fixed-top
+		.navbar-inner
+			.container
+				button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand(href='#') Insta-Node
+				.collapse.navbar-collapse
+					ul.nav.navbar-nav
+						li.active
+							a(href='/account') Account
+						li
+							a(href='/feed') Feed
+						if !user
+							li
+								a(href='/login') Login
+						else
+							li
+								user.username
+								a(href='/logout') Logout
+
+	.container
+		.row-fluid
+			.span8			
+				block content
+			.span4
+
+	script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+	script(src='static/js/bootstrap.min.js')
