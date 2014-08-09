@@ -4,7 +4,8 @@ block content
 	.offset2
 	.span8
 		p
-			img(src='#{user.profile_picture}')
+			.profile_picture
+				img(src='#{user.profile_picture}')
 		p 
 			strong Username: 
 			span= user.username

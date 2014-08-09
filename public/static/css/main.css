@@ -3,10 +3,20 @@ body {
 }
 
 .cont {
-	border: 1px solid #e1e1e8;	
+	border: 1px solid #e1e1e8;
 	padding: 20px 0;
+	margin-bottom: 20px;
 }
+
+.profile_picture {
+	padding: 4px;
+	border: 2px solid #ddd;
+	display: inline-block;
+}
+
 #photo-list li {
+	box-shadow: 7px 7px 15px #444;
+	-webkit-box-shadow: 7px 7px 15px #444;
 	display: inline-block;
 	margin: 10px;
 }
