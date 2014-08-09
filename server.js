@@ -4,11 +4,13 @@ var express = require('express'),
 	passport = require('passport'),
 	util = require('util'),
 	http = require('http'),
+	https = require('https'),
 	InstagramStrategy = require('passport-instagram').Strategy;
 
 // Instagram App id and secret
 var INSTAGRAM_CLIENT_ID = "4a8127b4705b43f9855ab536f1967f99"
 var INSTAGRAM_CLIENT_SECRET = "8f3773ef0838425799939cd142af64bd";
+var Access_Token = "";
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -27,6 +29,7 @@ passport.use(new InstagramStrategy({
 	function(accessToken, refreshToken, profile, done) {
 		process.nextTick(function () {
 			// return the instagram user profile object
+			Access_Token = accessToken;
       		return done(null, profile);
     	});
 	}
@@ -80,6 +83,50 @@ app.get('/auth/instagram/callback', passport.authenticate('instagram', { failure
 	// If auth failed, redirect to login page
 	res.redirect('/account');
 });
+
+// app.get('https://api.instagram.com/v1/users/self/feed??access_token', function(req, res){
+// 	console.log(res);
+// });
+
+
+// Get the user's feed
+app.get('/feed', ensureAuthenticated, function(req, res){
+	var data = '',
+		respString = "",
+		feeds = [],
+		base_url = 'https://api.instagram.com/v1/users/self/media/recent';
+
+	https.get(base_url + '?access_token=' + Access_Token, function(response){
+		response.on("data", function(data) {
+			respString += data;
+		});
+		response.on("end", function() {
+			// Sometimes the json may not be in a proper format
+			try {
+				var respData = JSON.parse(respString);
+			} catch(e) {
+				_log("Server returned malformed json data.");
+				return;
+			}
+			
+			for (i in respData.data) {
+				var obj = respData.data[i];
+				feeds.push(respData.data[i].images);
+				
+			}
+
+			// Load the feeds
+			//console.log(feeds);
+			res.render('feed', { user: req.user._json.data, feeds: feeds });
+		});
+		response.on("error", function(err) {
+			_log("An error occured while fetching the feed. " + err);
+		});
+	}).on("error", function(err) {
+		console.log(err);
+	});
+
+})
 
 app.get('/logout', function(req, res){
 	req.logout();
