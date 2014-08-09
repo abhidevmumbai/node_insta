@@ -59,8 +59,8 @@ app.configure(function() {
 });
 
 
-app.get('/', function(req, res){
-	res.render('index', { user: req.user });
+app.get('/', ensureAuthenticated, function(req, res){
+	res.render('index', { user: req.user._json.data });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
@@ -125,12 +125,13 @@ app.get('/feed', ensureAuthenticated, function(req, res){
 	// }).on("error", function(err) {
 	// 	console.log(err);
 	// });
+	// console.log(req.user._json);
 	res.render('feed', { user: req.user._json.data, token: Access_Token });
 })
 
 app.get('/logout', function(req, res){
 	req.logout();
-	res.redirect('/');
+	res.redirect('/login');
 });
 
 var server = http.createServer(app);
