@@ -1,18 +1,26 @@
 extend index
 
 block content
-	p
-		img(src='#{user.profile_picture}')
-	p Username: #{user.username}
-	p Name:
-		span= user.full_name
-	p Name:
-		span= user.full_name
-	p Bio:
-		span= user.bio
-	p Media
-		span= user.counts.media
-	p Followers
-		span= user.counts.followed_by
-	p Following
-		span= user.counts.follows
+	.offset2
+	.span8
+		p
+			img(src='#{user.profile_picture}')
+		p 
+			strong Username: 
+			span= user.username
+		p 
+			strong Name: 
+			span= user.full_name
+		p 
+			strong Bio: 
+			span= user.bio
+		p 
+			strong Media: 
+			span= user.counts.media
+		p 
+			strong Followers: 
+			span= user.counts.followed_by
+		p 
+			strong Following: 
+			span= user.counts.follows
+	.offset2

@@ -1,9 +1,10 @@
 extends index
 
 block content
-	ul#photo-list
+	.span12
+		ul#photo-list
 
 block scripts
 	script.
 		feeds.token="#{token}";
-		feeds.fetch();
+		feeds.init();

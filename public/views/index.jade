@@ -14,7 +14,7 @@ body
 					span.icon-bar
 					span.icon-bar
 					span.icon-bar
-				a.navbar-brand(href='#') Insta-Node
+				a.navbar-brand(href='/') Insta-Node
 				.collapse.navbar-collapse
 					ul.nav.navbar-nav
 						li.active
@@ -29,12 +29,14 @@ body
 								user.username
 								a(href='/logout') Logout
 
-	.container
-		.row-fluid
-			.span8			
-				block content
-			.span4
-
+	.container.cont
+		.row-fluid			
+			block content
+				.offset2
+				.span8
+					h3 Welcome #{user.full_name} !!!
+				.offset2
+			.spinner
 	script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
 	script(src='static/js/bootstrap.min.js')
 	script(src='static/js/main.js')

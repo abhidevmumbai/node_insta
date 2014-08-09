@@ -2,7 +2,42 @@ body {
 	padding-top: 75px;
 }
 
+.cont {
+	border: 1px solid #e1e1e8;	
+	padding: 20px 0;
+}
 #photo-list li {
 	display: inline-block;
 	margin: 10px;
+}
+
+.spinner {
+	background-color: #333;
+	border-radius: 100%;  
+	-webkit-animation: scaleout 1.0s infinite ease-in-out;
+	animation: scaleout 1.0s infinite ease-in-out;
+	display: none;
+	width: 40px;
+	height: 40px;
+	margin: 100px auto;
+	
+}
+
+@-webkit-keyframes scaleout {
+	0% { -webkit-transform: scale(0.0) }
+	100% {
+		-webkit-transform: scale(1.0);
+		opacity: 0;
+	}
+}
+
+	@keyframes scaleout {
+	0% { 
+		transform: scale(0.0);
+		-webkit-transform: scale(0.0);
+	} 100% {
+		transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+		opacity: 0;
+	}
 }
