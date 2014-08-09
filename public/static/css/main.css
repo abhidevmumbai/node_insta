@@ -1,3 +1,8 @@
 body {
 	padding-top: 75px;
 }
+
+#photo-list li {
+	display: inline-block;
+	margin: 10px;
+}

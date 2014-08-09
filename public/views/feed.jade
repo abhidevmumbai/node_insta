@@ -1,5 +1,9 @@
 extends index
 
 block content
-	each feed in feeds
-		img(src='#{feed.thumbnail.url}')
+	ul#photo-list
+
+block scripts
+	script.
+		feeds.token="#{token}";
+		feeds.fetch();

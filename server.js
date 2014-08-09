@@ -91,41 +91,41 @@ app.get('/auth/instagram/callback', passport.authenticate('instagram', { failure
 
 // Get the user's feed
 app.get('/feed', ensureAuthenticated, function(req, res){
-	var data = '',
-		respString = "",
-		feeds = [],
-		base_url = 'https://api.instagram.com/v1/users/self/media/recent';
+	// var data = '',
+	// 	respString = "",
+	// 	feeds = [],
+	// 	base_url = 'https://api.instagram.com/v1/users/self/media/recent';
 
-	https.get(base_url + '?access_token=' + Access_Token, function(response){
-		response.on("data", function(data) {
-			respString += data;
-		});
-		response.on("end", function() {
-			// Sometimes the json may not be in a proper format
-			try {
-				var respData = JSON.parse(respString);
-			} catch(e) {
-				_log("Server returned malformed json data.");
-				return;
-			}
+	// https.get(base_url + '?access_token=' + Access_Token, function(response){
+	// 	response.on("data", function(data) {
+	// 		respString += data;
+	// 	});
+	// 	response.on("end", function() {
+	// 		// Sometimes the json may not be in a proper format
+	// 		try {
+	// 			var respData = JSON.parse(respString);
+	// 		} catch(e) {
+	// 			_log("Server returned malformed json data.");
+	// 			return;
+	// 		}
 			
-			for (i in respData.data) {
-				var obj = respData.data[i];
-				feeds.push(respData.data[i].images);
-				
-			}
+	// 		for (i in respData.data) {
+	// 			var obj = respData.data[i];
+	// 			feeds.push(respData.data[i].images);
+	// 			console.log(obj)
+	// 		}
 
-			// Load the feeds
-			//console.log(feeds);
-			res.render('feed', { user: req.user._json.data, feeds: feeds });
-		});
-		response.on("error", function(err) {
-			_log("An error occured while fetching the feed. " + err);
-		});
-	}).on("error", function(err) {
-		console.log(err);
-	});
-
+	// 		// Load the feeds
+	// 		//console.log(feeds);
+	// 		res.render('feed', { user: req.user._json.data, feeds: feeds, token: Access_Token });
+	// 	});
+	// 	response.on("error", function(err) {
+	// 		_log("An error occured while fetching the feed. " + err);
+	// 	});
+	// }).on("error", function(err) {
+	// 	console.log(err);
+	// });
+	res.render('feed', { user: req.user._json.data, token: Access_Token });
 })
 
 app.get('/logout', function(req, res){
