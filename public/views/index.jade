@@ -1,6 +1,8 @@
 doctype html
 html(lang='en')
 head
+	block title
+		title Home
 	meta(charset='utf-8')
 	meta(name='viewport', content='width=device-width, initial-scale=1.0')
 	link(href='static/css/bootstrap.css' type='text/css' rel='stylesheet')
@@ -16,17 +18,17 @@ body
 					span.icon-bar
 				a.navbar-brand(href='/') Insta-Node
 				.collapse.navbar-collapse
-					ul.nav.navbar-nav
-						li.active
-							a(href='/account') Account
+					ul.nav.navbar-nav.pull-left
 						li
 							a(href='/feed') Feed
+					ul.nav.navbar-nav.pull-right
 						if !user
 							li
 								a(href='/login') Login
 						else
+							li.active
+								a(href='/account') #{user.username}
 							li
-								user.username
 								a(href='/logout') Logout
 
 	.container.cont
