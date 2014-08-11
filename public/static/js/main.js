@@ -43,7 +43,7 @@ var feeds = {
 						feeds.isEnd = true;
 					}
 					for (index in e.data) {
-						$('ul#photo-list').append("<li><img src="+e.data[index].images.thumbnail.url+" /></li>");
+						$('ul#photo-list').append('<li><a href="'+ e.data[index].images.standard_resolution.url +'" target="blank"><img src="'+ e.data[index].images.thumbnail.url +'" /></a></li>');
 					}
 					console.log(e.data[index].images);
 					$(".spinner").hide();
