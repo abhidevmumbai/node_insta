@@ -8,17 +8,26 @@ body {
 	margin-bottom: 20px;
 }
 
+.account p, .account h4 {
+	padding: 0 2%;
+}
+.account .stats {
+	padding: 0 5px;
+}
 .profile_picture {
 	padding: 4px;
 	border: 2px solid #ddd;
 	display: inline-block;
 }
 
+#photo-list {
+	text-align: center;
+}
 #photo-list li {
 	box-shadow: 7px 7px 15px #444;
 	-webkit-box-shadow: 7px 7px 15px #444;
 	display: inline-block;
-	margin: 10px;
+	margin: 3%;
 }
 
 .spinner {
@@ -49,5 +58,11 @@ body {
 		transform: scale(1.0);
 		-webkit-transform: scale(1.0);
 		opacity: 0;
+	}
+}
+
+@media all and (max-width: 979px) {
+	body {
+		padding: 0;
 	}
 }

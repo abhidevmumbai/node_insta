@@ -4,7 +4,7 @@ block title
 	title My Account
 block content
 	.offset2
-	.span8
+	.span8.account
 		p
 			.profile_picture
 				img(src='#{user.profile_picture}')
@@ -17,13 +17,13 @@ block content
 		p 
 			strong Bio: 
 			span= user.bio
-		p 
-			strong Media: 
-			span= user.counts.media
-		p 
-			strong Followers: 
-			span= user.counts.followed_by
-		p 
-			strong Following: 
-			span= user.counts.follows
+		h4
+			span.label.label-success Media
+			span.stats= user.counts.media
+		h4
+			span.label.label-info Followers
+			span.stats= user.counts.followed_by
+		h4
+			span.label.label-info Following
+			span.stats= user.counts.follows
 	.offset2
